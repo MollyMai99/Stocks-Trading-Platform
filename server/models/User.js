@@ -1,5 +1,5 @@
-// backend/models/User.js
 const db = require("../config/db");
+const bcrypt = require("bcrypt");
 
 const createUserTable = async () => {
   const queryText = `
@@ -9,7 +9,8 @@ const createUserTable = async () => {
       email VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
       role VARCHAR(50) DEFAULT 'user',
-      isApproved BOOLEAN DEFAULT false
+      is_approved BOOLEAN DEFAULT FALSE,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `;
   try {
@@ -20,21 +21,31 @@ const createUserTable = async () => {
   }
 };
 
-const createUser = async (username, email, password) => {
+const insertUserData = async (users) => {
   const queryText = `
-    INSERT INTO users (username, email, password) VALUES ($1, $2, $3)
+    INSERT INTO users (username, email, password, role, is_approved)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *
   `;
-  const values = [username, email, password];
   try {
-    const res = await db.query(queryText, values);
-    return res.rows[0];
+    for (const user of users) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      const values = [
+        user.username,
+        user.email,
+        hashedPassword,
+        user.role,
+        user.is_approved,
+      ];
+      await db.query(queryText, values);
+    }
+    console.log("User data inserted successfully");
   } catch (error) {
-    console.error("Error creating user", error);
+    console.error("Error inserting user data", error);
   }
 };
 
 module.exports = {
   createUserTable,
-  createUser,
+  insertUserData,
 };
