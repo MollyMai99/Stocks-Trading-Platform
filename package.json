@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev:react": "vite",
-    "dev:express": "DEBUG=mern:* node --watch server.js",
+    "dev:express": "DEBUG=mern:* node --watch server/index.js",
     "dev:express-win": "nodemon server.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -17,8 +17,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.4",
     "morgan": "^1.10.0",
+    "pg": "^8.11.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0",
