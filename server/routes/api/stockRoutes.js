@@ -1,8 +1,12 @@
 const express = require("express");
-const { getStocks } = require("../../controllers/api/stockController");
+const {
+  getStocks,
+  getStockById,
+} = require("../../controllers/api/stockController");
 
 const router = express.Router();
 
 router.get("/", getStocks);
+router.get("/:stockId", getStockById);
 
 module.exports = router;
