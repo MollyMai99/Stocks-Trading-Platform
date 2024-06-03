@@ -1,11 +1,21 @@
 const express = require("express");
-const router = express.Router();
-const usersCtrl = require("../../controllers/api/usersController");
-const ensureLoggedIn = require("../../config/ensureLoggedIn");
+const {
+  buyStock,
+  getUserTransactions,
+  getTransactionById,
+  getUserProfile,
+} = require("../../controllers/api/usersController");
+const { authenticateToken } = require("../../middleware/authMiddleware");
 
-// POST /api/users
-router.post("/", usersCtrl.create);
-router.post("/login", usersCtrl.login);
-router.get("/check-token", [ensureLoggedIn], usersCtrl.checkToken);
+const router = express.Router();
+
+router.post("/stocks/buy", authenticateToken, buyStock);
+router.get("/transactions", authenticateToken, getUserTransactions);
+router.get(
+  "/transactions/:transactionId",
+  authenticateToken,
+  getTransactionById,
+);
+router.get("/profile", authenticateToken, getUserProfile);
 
 module.exports = router;

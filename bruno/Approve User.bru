@@ -1,0 +1,15 @@
+meta {
+  name: Approve User
+  type: http
+  seq: 15
+}
+
+put {
+  url: http://localhost:3000/api/admin/approve-user/21
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjksImVtYWlsIjoiYWRtaW4xMjNAZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTc0MDM5MzAsImV4cCI6MTcxNzQwNzUzMH0.if64CHCK86UnLpNLT6cIyZjvyWWhItp5PBWKGmfEQd4
+}

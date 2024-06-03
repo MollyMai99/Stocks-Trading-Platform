@@ -1,53 +1,92 @@
-const debug = require("debug")("mern:controllers:api:usersController");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const User = require("../../models/user");
-const { getUser } = require("../../config/checkToken");
+const db = require("../../config/db");
+const { insertTransaction } = require("../../models/Transaction");
 
-const createJWT = (user) =>
-  jwt.sign({ user }, process.env.SECRET, { expiresIn: "20m" });
-
-const create = async (req, res) => {
-  debug("body: %o", req.body);
-  const { name, email, password } = req.body;
+const buyStock = async (req, res) => {
+  const { userId, stockId, quantity } = req.body;
 
   try {
-    const user = await User.create({ name, email, password });
-    debug("user: %o", user);
-    const token = createJWT(user);
-    res.status(201).json(token);
+    // 查找股票价格
+    const queryText = "SELECT current_price FROM stocks WHERE id = $1";
+    const { rows } = await db.query(queryText, [stockId]);
+    if (rows.length === 0) {
+      return res.status(400).json({ error: "Stock not found" });
+    }
+
+    const price = rows[0].current_price;
+
+    // 插入交易记录
+    const transaction = await insertTransaction(
+      userId,
+      stockId,
+      quantity,
+      price,
+    );
+
+    // 返回交易记录
+    res.status(201).json(transaction);
   } catch (error) {
-    debug("error: %o", error);
-    res.status(500).json({ error });
+    console.error("Error buying stock:", error);
+    res.status(500).json({ error: "Server error" });
   }
 };
 
-const login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
+const getUserTransactions = async (req, res) => {
+  const userId = req.user.id; // 从 JWT 中获取用户 ID
 
-  if (user === null) {
-    res.status(401).json({ msg: "User not found" });
-    return;
-  }
-
-  const match = await bcrypt.compare(password, user.password);
-
-  if (match) {
-    const token = createJWT(user);
-    res.json(token);
-  } else {
-    res.status(401).json({ msg: "Password incorrect" });
+  try {
+    console.log(`Fetching transactions for user ID: ${userId}`);
+    const queryText = "SELECT * FROM transactions WHERE user_id = $1";
+    const { rows } = await db.query(queryText, [userId]);
+    console.log(`Transactions found: ${rows.length}`);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error getting user transactions:", error);
+    res.status(500).json({ error: "Server error" });
   }
 };
 
-const checkToken = (req, res) => {
-  const user = getUser(req, res); //res.locals.user;
-  res.json({ user });
+const getTransactionById = async (req, res) => {
+  const userId = req.user.id; // 从 JWT 中获取用户 ID
+  const { transactionId } = req.params;
+
+  try {
+    console.log(
+      `Fetching transaction for user ID: ${userId}, transaction ID: ${transactionId}`,
+    );
+    const queryText =
+      "SELECT * FROM transactions WHERE id = $1 AND user_id = $2";
+    const { rows } = await db.query(queryText, [transactionId, userId]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "Transaction not found" });
+    }
+    res.status(200).json(rows[0]);
+  } catch (error) {
+    console.error("Error getting transaction by id:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+const getUserProfile = async (req, res) => {
+  const userId = req.user.id; // 从 JWT 中获取用户 ID
+
+  try {
+    console.log(`Fetching profile for user ID: ${userId}`);
+    const queryText =
+      "SELECT id, username, email, role, is_approved, created_at FROM users WHERE id = $1";
+    const { rows } = await db.query(queryText, [userId]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json(rows[0]);
+  } catch (error) {
+    console.error("Error getting user profile:", error);
+    res.status(500).json({ error: "Server error" });
+  }
 };
 
 module.exports = {
-  create,
-  login,
-  checkToken,
+  buyStock,
+  getUserTransactions,
+  getTransactionById,
+  getUserProfile,
 };

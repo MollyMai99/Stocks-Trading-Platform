@@ -19,29 +19,23 @@ const createTransactionTable = async () => {
   }
 };
 
-const insertTransactionData = async (transactions) => {
+const insertTransaction = async (userId, stockId, quantity, price) => {
   const queryText = `
     INSERT INTO transactions (user_id, stock_id, quantity, price)
     VALUES ($1, $2, $3, $4)
     RETURNING *
   `;
   try {
-    for (const transaction of transactions) {
-      const values = [
-        transaction.user_id,
-        transaction.stock_id,
-        transaction.quantity,
-        transaction.price,
-      ];
-      await db.query(queryText, values);
-    }
-    console.log("Transaction data inserted successfully");
+    const values = [userId, stockId, quantity, price];
+    const { rows } = await db.query(queryText, values);
+    return rows[0];
   } catch (error) {
-    console.error("Error inserting transaction data", error);
+    console.error("Error inserting transaction", error);
+    throw error;
   }
 };
 
 module.exports = {
   createTransactionTable,
-  insertTransactionData,
+  insertTransaction,
 };
