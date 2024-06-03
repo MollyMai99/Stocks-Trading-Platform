@@ -1,0 +1,15 @@
+meta {
+  name: Get Transactions
+  type: http
+  seq: 11
+}
+
+get {
+  url: http://localhost:3000/api/user/transactions
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyMkBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE3NDAxMTUxLCJleHAiOjE3MTc0MDQ3NTF9.MV-4TLOYhdpAvigQ-6K27bGs_-hT8S2oFIvkPDqQ0aU
+}

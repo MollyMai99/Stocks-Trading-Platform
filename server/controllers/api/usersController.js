@@ -30,6 +30,22 @@ const buyStock = async (req, res) => {
   }
 };
 
+const getUserTransactions = async (req, res) => {
+  const userId = req.user.id; // 从 JWT 中获取用户 ID
+
+  try {
+    console.log(`Fetching transactions for user ID: ${userId}`);
+    const queryText = "SELECT * FROM transactions WHERE user_id = $1";
+    const { rows } = await db.query(queryText, [userId]);
+    console.log(`Transactions found: ${rows.length}`);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Error getting user transactions:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 module.exports = {
   buyStock,
+  getUserTransactions,
 };
