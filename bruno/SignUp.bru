@@ -11,14 +11,9 @@ post {
 }
 
 body:json {
-  {
-    "username": "me",
-    "email": "me1@ga.co",
-    "password": "123"
-  }
-}
-
-script:post-response {
-  bru.setEnvVar("token",res.body)
-  // atob(res.body.split(".")[1])
+   {
+      "username": "123",
+      "email": "123@ga.co",
+      "password": "123"
+    }
 }

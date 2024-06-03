@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/api/authRoutes");
@@ -116,28 +117,25 @@ const stockData = [
 ];
 
 const transactionData = [
-  { user_id: 9, stock_id: 1, quantity: 10, price: 150.0 },
-  { user_id: 9, stock_id: 2, quantity: 5, price: 250.0 },
-  { user_id: 8, stock_id: 3, quantity: 2, price: 3200.0 },
-  { user_id: 8, stock_id: 4, quantity: 1, price: 2800.0 },
-  { user_id: 7, stock_id: 5, quantity: 8, price: 340.0 },
-  { user_id: 7, stock_id: 6, quantity: 3, price: 700.0 },
-  { user_id: 6, stock_id: 7, quantity: 4, price: 500.0 },
-  { user_id: 6, stock_id: 8, quantity: 6, price: 600.0 },
+  { user_id: 1, stock_id: 1, quantity: 10, price: 150.0 },
+  { user_id: 1, stock_id: 2, quantity: 5, price: 250.0 },
+  { user_id: 2, stock_id: 3, quantity: 2, price: 3200.0 },
+  { user_id: 2, stock_id: 4, quantity: 1, price: 2800.0 },
+  { user_id: 3, stock_id: 5, quantity: 8, price: 340.0 },
+  { user_id: 3, stock_id: 6, quantity: 3, price: 700.0 },
+  { user_id: 4, stock_id: 7, quantity: 4, price: 500.0 },
+  { user_id: 4, stock_id: 8, quantity: 6, price: 600.0 },
   { user_id: 5, stock_id: 9, quantity: 20, price: 60.0 },
   { user_id: 5, stock_id: 10, quantity: 7, price: 140.0 },
 ];
 
-createStockTable();
-insertStockData(stockData);
-
 app.listen(port, async () => {
-  await createUserTable();
-  await insertUserData(userData);
-  await createStockTable();
-  await insertStockData(stockData);
-  await createTransactionTable();
-  await insertTransactionData(transactionData);
+  // await createUserTable();
+  // await insertUserData(userData);
+  // await createStockTable();
+  // await insertStockData(stockData);
+  // await createTransactionTable();
+  // await insertTransactionData(transactionData);
   console.log(`Server is running on port ${port}`);
 });
 

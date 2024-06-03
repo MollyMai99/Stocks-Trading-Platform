@@ -45,7 +45,31 @@ const insertUserData = async (users) => {
   }
 };
 
+const createUser = async (
+  username,
+  email,
+  password,
+  role = "user",
+  is_approved = false
+) => {
+  const queryText = `
+    INSERT INTO users (username, email, password, role, is_approved)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *
+  `;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const values = [username, email, hashedPassword, role, is_approved];
+    const { rows } = await db.query(queryText, values);
+    return rows[0];
+  } catch (error) {
+    console.error("Error creating user", error);
+    throw error;
+  }
+};
+
 module.exports = {
   createUserTable,
   insertUserData,
+  createUser,
 };

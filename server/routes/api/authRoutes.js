@@ -1,11 +1,12 @@
-// backend/routes/authRoutes.js
 const express = require("express");
 const {
   registerUser,
-} = require("/Users/lingling/sei/project/Stocks-Trading-Platform/server/controllers/api/authController.js");
+  loginUser,
+} = require("../../controllers/api/authController");
 
 const router = express.Router();
 
 router.post("/register", registerUser);
+router.post("/login", loginUser);
 
 module.exports = router;
