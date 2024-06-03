@@ -3,6 +3,7 @@ const {
   buyStock,
   getUserTransactions,
   getTransactionById,
+  getUserProfile,
 } = require("../../controllers/api/usersController");
 const { authenticateToken } = require("../../middleware/authMiddleware");
 
@@ -15,5 +16,6 @@ router.get(
   authenticateToken,
   getTransactionById,
 );
+router.get("/profile", authenticateToken, getUserProfile);
 
 module.exports = router;
