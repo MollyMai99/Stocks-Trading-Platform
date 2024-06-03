@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/api/authRoutes");
 const userRoutes = require("./routes/api/usersRoutes");
 const stockRoutes = require("./routes/api/stockRoutes");
+const adminRoutes = require("./routes/api/adminsRoutes");
 // const { createUserTable, insertUserData } = require("./models/User");
 // const { createStockTable, insertStockData } = require("./models/Stock");
 // const {
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/stocks", stockRoutes);
+app.use("/api/admin", adminRoutes);
 
 // const userData = [
 //   {
