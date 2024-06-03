@@ -1,0 +1,19 @@
+meta {
+  name: Buy Stock
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:3000/api/user/stocks/buy
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userId": 1,
+    "stockId": 1,
+    "quantity": 10
+  }
+}

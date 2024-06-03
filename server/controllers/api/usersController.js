@@ -1,53 +1,35 @@
-const debug = require("debug")("mern:controllers:api:usersController");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const User = require("../../models/user");
-const { getUser } = require("../../config/checkToken");
+const db = require("../../config/db");
+const { insertTransaction } = require("../../models/Transaction");
 
-const createJWT = (user) =>
-  jwt.sign({ user }, process.env.SECRET, { expiresIn: "20m" });
-
-const create = async (req, res) => {
-  debug("body: %o", req.body);
-  const { name, email, password } = req.body;
+const buyStock = async (req, res) => {
+  const { userId, stockId, quantity } = req.body;
 
   try {
-    const user = await User.create({ name, email, password });
-    debug("user: %o", user);
-    const token = createJWT(user);
-    res.status(201).json(token);
+    // 查找股票价格
+    const queryText = "SELECT current_price FROM stocks WHERE id = $1";
+    const { rows } = await db.query(queryText, [stockId]);
+    if (rows.length === 0) {
+      return res.status(400).json({ error: "Stock not found" });
+    }
+
+    const price = rows[0].current_price;
+
+    // 插入交易记录
+    const transaction = await insertTransaction(
+      userId,
+      stockId,
+      quantity,
+      price,
+    );
+
+    // 返回交易记录
+    res.status(201).json(transaction);
   } catch (error) {
-    debug("error: %o", error);
-    res.status(500).json({ error });
+    console.error("Error buying stock:", error);
+    res.status(500).json({ error: "Server error" });
   }
-};
-
-const login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-
-  if (user === null) {
-    res.status(401).json({ msg: "User not found" });
-    return;
-  }
-
-  const match = await bcrypt.compare(password, user.password);
-
-  if (match) {
-    const token = createJWT(user);
-    res.json(token);
-  } else {
-    res.status(401).json({ msg: "Password incorrect" });
-  }
-};
-
-const checkToken = (req, res) => {
-  const user = getUser(req, res); //res.locals.user;
-  res.json({ user });
 };
 
 module.exports = {
-  create,
-  login,
-  checkToken,
+  buyStock,
 };

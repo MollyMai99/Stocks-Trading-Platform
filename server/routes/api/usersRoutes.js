@@ -1,11 +1,8 @@
 const express = require("express");
-const router = express.Router();
-const usersCtrl = require("../../controllers/api/usersController");
-const ensureLoggedIn = require("../../config/ensureLoggedIn");
+const { buyStock } = require("../../controllers/api/usersController");
 
-// POST /api/users
-router.post("/", usersCtrl.create);
-router.post("/login", usersCtrl.login);
-router.get("/check-token", [ensureLoggedIn], usersCtrl.checkToken);
+const router = express.Router();
+
+router.post("/stocks/buy", buyStock);
 
 module.exports = router;
