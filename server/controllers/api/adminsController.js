@@ -12,6 +12,26 @@ const getPendingUsers = async (req, res) => {
   }
 };
 
+const approveUser = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const queryText =
+      "UPDATE users SET is_approved = TRUE WHERE id = $1 RETURNING id, username, email, role, is_approved, created_at";
+    const { rows } = await db.query(queryText, [userId]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(rows[0]);
+  } catch (error) {
+    console.error("Error approving user:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 module.exports = {
   getPendingUsers,
+  approveUser,
 };

@@ -1,5 +1,8 @@
 const express = require("express");
-const { getPendingUsers } = require("../../controllers/api/adminsController");
+const {
+  getPendingUsers,
+  approveUser,
+} = require("../../controllers/api/adminsController");
 const {
   authenticateToken,
   authorizeAdmin,
@@ -12,6 +15,12 @@ router.get(
   authenticateToken,
   authorizeAdmin,
   getPendingUsers,
+);
+router.put(
+  "/approve-user/:userId",
+  authenticateToken,
+  authorizeAdmin,
+  approveUser,
 );
 
 module.exports = router;
