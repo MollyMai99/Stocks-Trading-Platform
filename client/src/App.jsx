@@ -42,13 +42,30 @@
 
 // export default App;
 
-// import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
-    <div>
-      <h1>123</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<div>Home Page</div>} />
+          <Route path="/register/*" element={<AuthPage />} />
+          <Route path="/login/*" element={<AuthPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
