@@ -9,3 +9,7 @@ export function getStocks() {
 export function getStockDetails(stockId) {
   return sendRequest(`${BASE_URL}/${stockId}`);
 }
+
+export function buyStock(stockId, quantity) {
+  return sendRequest(`${BASE_URL}/buy`, "POST", { stockId, quantity });
+}

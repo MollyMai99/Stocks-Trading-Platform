@@ -1,6 +1,5 @@
 const express = require("express");
 const {
-  buyStock,
   getUserTransactions,
   getTransactionById,
   getUserProfile,
@@ -9,7 +8,7 @@ const { authenticateToken } = require("../../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post("/stocks/buy", authenticateToken, buyStock);
+// router.post("/stocks/buy", authenticateToken, buyStock);
 router.get("/transactions", authenticateToken, getUserTransactions);
 router.get(
   "/transactions/:transactionId",
