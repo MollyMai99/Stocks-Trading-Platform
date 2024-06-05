@@ -1,11 +1,11 @@
 import debug from "debug";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { login } from "../../utilities/users-service";
 
 const log = debug("mern:components:LoginForm");
 
 export default function LoginForm({ setUser }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +17,7 @@ export default function LoginForm({ setUser }) {
     const { email, password } = data;
     const user = await login(email, password);
     setUser(user);
-    navigate("/orders");
+    // navigate("/orders");
   };
 
   return (

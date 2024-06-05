@@ -1,9 +1,9 @@
 import sendRequest from "./send-request";
 
-const BASE_URL = "/api/users";
+const BASE_URL = "/api/auth";
 
 export function signUp(userData) {
-  return sendRequest(BASE_URL, "POST", userData);
+  return sendRequest(`${BASE_URL}/register`, "POST", userData);
 }
 
 export function login(credentials) {
