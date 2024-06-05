@@ -7,6 +7,7 @@ import AuthPage from "./pages/AuthPage/AuthPage";
 import HomePage from "./pages/HomePage";
 import StocksPage from "./pages/StocksPage";
 import StockDetailPage from "./pages/StockDetailPage";
+import BuyStockPage from "./components/Stocks/BuyStockPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import ProfilePage from "./pages/ProfilePage";
 // import NewOrderPage from "../NewOrderPage/NewOrderPage";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/login" element={<AuthPage setUser={setUser} />} />
           <Route path="/stocks" element={<StocksPage />} />
           <Route path="/stocks/:stockId" element={<StockDetailPage />} />
+          <Route path="/buy/:stockId" element={<BuyStockPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>

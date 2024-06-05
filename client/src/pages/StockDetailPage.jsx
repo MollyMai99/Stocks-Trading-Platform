@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getStockDetails } from "../utilities/stocks-service";
 
 export default function StockDetailPage() {
@@ -25,6 +25,9 @@ export default function StockDetailPage() {
       <p>Stock Code: {stock.stock_code}</p>
       <p>Price: {stock.current_price}</p>
       {/* Add more details as needed */}
+      <Link to={`/buy/${stock.id}`}>
+        <button>Buy Stock</button>
+      </Link>
     </div>
   );
 }
