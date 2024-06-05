@@ -6,24 +6,31 @@ const log = debug("mern:components:SignUpForm");
 
 export default class SignUpForm extends Component {
   state = {
-    name: "simon",
-    email: "",
-    password: "",
+    username: "user6",
+    email: "user6@example.com",
+    password: "123",
     confirm: "",
     error: "",
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({ ...this.state, [name]: value });
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = { ...this.state };
-    delete formData.error;
-    delete formData.confirm;
+
+    if (this.state.password !== this.state.confirm) {
+      this.setState({ error: "Passwords do not match" });
+      return;
+    }
+
+    const formData = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+    };
 
     try {
       const user = await signUp(formData);
@@ -34,6 +41,27 @@ export default class SignUpForm extends Component {
     }
   };
 
+  // handleChange = (event) => {
+  //   const { name, value } = event.target;
+
+  //   this.setState({ ...this.state, [name]: value });
+  // };
+
+  // handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const formData = { ...this.state };
+  //   delete formData.error;
+  //   delete formData.confirm;
+
+  //   try {
+  //     const user = await signUp(formData);
+  //     log("user: %o", user);
+  //     this.props.setUser(user);
+  //   } catch (error) {
+  //     this.setState({ error: "Sign Up Failed" });
+  //   }
+  // };
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -43,8 +71,8 @@ export default class SignUpForm extends Component {
           <label>
             Name:
             <input
-              name="name"
-              value={this.state.name}
+              name="username"
+              value={this.state.username}
               onChange={this.handleChange}
             />
           </label>
