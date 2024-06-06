@@ -9,6 +9,7 @@ import StocksPage from "./pages/StocksPage";
 import StockDetailPage from "./pages/StockDetailPage";
 import BuyStockPage from "./components/Stocks/BuyStockPage";
 import TransactionsPage from "./pages/TransactionsPage";
+import TransactionDetailPage from "./pages/TransactionDetailPage";
 import ProfilePage from "./pages/ProfilePage";
 // import NewOrderPage from "../NewOrderPage/NewOrderPage";
 // import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
@@ -47,6 +48,10 @@ function App() {
           <Route path="/stocks/:stockId" element={<StockDetailPage />} />
           <Route path="/buy/:stockId" element={<BuyStockPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
+          <Route
+            path="/transactions/:stockId"
+            element={<TransactionDetailPage />}
+          />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </main>
