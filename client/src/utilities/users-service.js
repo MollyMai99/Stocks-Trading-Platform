@@ -1,5 +1,6 @@
 import debug from "debug";
 import * as usersAPI from "./users-api";
+import sendRequest from "./send-request";
 
 const log = debug("mern:utilities:users-service");
 
@@ -76,3 +77,8 @@ export const checkToken = async () => {
   const dateStr = await usersAPI.checkToken();
   return new Date(dateStr);
 };
+
+const BASE_URL = "/api/user";
+export function getUserProfile() {
+  return sendRequest(`${BASE_URL}/profile`);
+}
