@@ -11,5 +11,6 @@ export function getStockDetails(stockId) {
 }
 
 export function buyStock(stockId, quantity, userId) {
+  console.log("Sending request to buy stock:", { stockId, quantity, userId });
   return sendRequest(`${BASE_URL}/buy`, "POST", { stockId, quantity, userId });
 }
