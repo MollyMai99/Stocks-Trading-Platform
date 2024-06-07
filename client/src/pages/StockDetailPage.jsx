@@ -26,9 +26,11 @@ export default function StockDetailPage() {
 
   const handleBuyStock = async () => {
     try {
+      console.log("Initiating buyStock with user.id:", user.id);
       await buyStock(stockId, quantity, user.id);
       navigate("/transactions");
     } catch (err) {
+      console.error("Error occurred while buying stock:", err);
       setError("Failed to buy stock");
     }
   };

@@ -55,14 +55,14 @@ const registerUser = async (req, res) => {
 // };
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, userType } = req.body;
 
   try {
-    console.log("Login attempt:", { email, password });
+    console.log("Login attempt:", { email, password, userType });
 
     // 查找用户
-    const queryText = "SELECT * FROM users WHERE email = $1";
-    const { rows } = await db.query(queryText, [email]);
+    const queryText = "SELECT * FROM users WHERE email = $1 AND role = $2";
+    const { rows } = await db.query(queryText, [email, userType]);
     if (rows.length === 0) {
       console.log("User not found");
       return res.status(400).json({ error: "User not found" });
@@ -80,8 +80,20 @@ const loginUser = async (req, res) => {
 
     // 生成 JWT 令牌
     console.log("Generating JWT");
+    // const token = jwt.sign(
+    //   { id: user.id, email: user.email, role: user.role },
+    //   process.env.JWT_SECRET,
+    //   {
+    //     expiresIn: "1h",
+    //   }
+    // );
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        user: { id: user.id, email: user.email, role: user.role },
+      },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",
@@ -89,7 +101,8 @@ const loginUser = async (req, res) => {
     );
     console.log("JWT generated:", token);
 
-    res.status(200).json({
+    // 准备响应数据
+    const response = {
       token,
       user: {
         id: user.id,
@@ -97,7 +110,11 @@ const loginUser = async (req, res) => {
         email: user.email,
         role: user.role,
       },
-    });
+    };
+
+    // 记录并发送响应
+    console.log("Sending response:", response);
+    res.status(200).json(response);
   } catch (error) {
     console.error("Error logging in user:", error);
     res.status(500).json({ error: "Server error" });
