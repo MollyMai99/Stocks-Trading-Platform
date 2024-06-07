@@ -10,6 +10,6 @@ export function getStockDetails(stockId) {
   return sendRequest(`${BASE_URL}/${stockId}`);
 }
 
-export function buyStock(stockId, quantity) {
-  return sendRequest(`${BASE_URL}/buy`, "POST", { stockId, quantity });
+export function buyStock(stockId, quantity, userId) {
+  return sendRequest(`${BASE_URL}/buy`, "POST", { stockId, quantity, userId });
 }

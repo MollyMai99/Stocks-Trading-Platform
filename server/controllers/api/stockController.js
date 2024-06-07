@@ -1,5 +1,5 @@
 const db = require("../../config/db");
-const { insertTransaction } = require("../../models/Transaction");
+// const { insertTransaction } = require("../../models/Transaction");
 
 const getStocks = async (req, res) => {
   try {
@@ -28,32 +28,34 @@ const getStockById = async (req, res) => {
   }
 };
 
+// 购买股票
 const buyStock = async (req, res) => {
-  const { userId, stockId, quantity } = req.body;
-
+  const { stockId, quantity, userId } = req.body;
   try {
-    // 查找股票价格
-    const queryText = "SELECT current_price FROM stocks WHERE id = $1";
-    const { rows } = await db.query(queryText, [stockId]);
-    if (rows.length === 0) {
-      return res.status(400).json({ error: "Stock not found" });
+    // 获取股票价格
+    const stockResult = await db.query(
+      "SELECT current_price FROM stocks WHERE id = $1",
+      [stockId],
+    );
+    if (stockResult.rows.length === 0) {
+      return res.status(404).json({ error: "Stock not found" });
     }
-
-    const price = rows[0].current_price;
+    const price = stockResult.rows[0].current_price;
+    // const totalCost = price * quantity;
 
     // 插入交易记录
-    const transaction = await insertTransaction(
-      userId,
-      stockId,
-      quantity,
-      price,
-    );
+    const queryText = `
+      INSERT INTO transactions (user_id, stock_id, quantity, price, transaction_date)
+      VALUES ($1, $2, $3, $4, NOW())
+      RETURNING *
+    `;
+    const values = [userId, stockId, quantity, price];
+    const result = await db.query(queryText, values);
 
-    // 返回交易记录
-    res.status(201).json(transaction);
+    res.json(result.rows[0]);
   } catch (error) {
     console.error("Error buying stock:", error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Failed to buy stock" });
   }
 };
 
