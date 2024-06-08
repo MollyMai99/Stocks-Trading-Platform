@@ -1,35 +1,49 @@
 import { Link } from "react-router-dom";
-import { logOut } from "../utilities/users-service";
 
-export default function NavBar({ setUser }) {
-  const handleLogOut = () => {
-    logOut();
-    setUser(null);
-  };
-
+export default function NavBar({ handleLogout }) {
   return (
     <nav>
-      {/* <NavLink to="/orders">Order History</NavLink>
-      &nbsp; | &nbsp;
-      <NavLink to="/orders/new">New Order</NavLink>
-      &nbsp;&nbsp;
-      <Link to="" onClick={handleLogOut}>
-        Log Out
-      </Link> */}
       <Link to="/">Home</Link>
-
       <Link to="/stocks">Stocks Market</Link>
-
       <Link to="/transactions">Transactions History</Link>
-
       <Link to="/profile">User Profile</Link>
-
-      <Link to="/" onClick={handleLogOut}>
-        Logout
-      </Link>
+      <button onClick={handleLogout}>Logout</button>
     </nav>
   );
 }
+
+// import { Link } from "react-router-dom";
+// import { logOut } from "../utilities/users-service";
+
+// export default function NavBar({ setUser }) {
+//   const handleLogOut = () => {
+//     logOut();
+//     setUser(null);
+//   };
+
+//   return (
+//     <nav>
+//       {/* <NavLink to="/orders">Order History</NavLink>
+//       &nbsp; | &nbsp;
+//       <NavLink to="/orders/new">New Order</NavLink>
+//       &nbsp;&nbsp;
+//       <Link to="" onClick={handleLogOut}>
+//         Log Out
+//       </Link> */}
+//       <Link to="/">Home</Link>
+
+//       <Link to="/stocks">Stocks Market</Link>
+
+//       <Link to="/transactions">Transactions History</Link>
+
+//       <Link to="/profile">User Profile</Link>
+
+//       <Link to="/" onClick={handleLogOut}>
+//         Logout
+//       </Link>
+//     </nav>
+//   );
+// }
 
 // import { Link } from "react-router-dom";
 

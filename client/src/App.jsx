@@ -2,7 +2,8 @@ import debug from "debug";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "../src/components/NavBar";
-import { getUser } from "./utilities/users-service";
+import AdminNavBar from "../src/components/Admin/AdminNavBar";
+import { getUser, logOut } from "./utilities/users-service";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import HomePage from "./pages/HomePage";
 import StocksPage from "./pages/StocksPage";
@@ -11,6 +12,8 @@ import StockDetailPage from "./pages/StockDetailPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import TransactionDetailPage from "./pages/TransactionDetailPage";
 import ProfilePage from "./pages/ProfilePage";
+import PendingUsersPage from "./pages/PendingUsersPage";
+
 // import NewOrderPage from "../NewOrderPage/NewOrderPage";
 // import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 
@@ -20,6 +23,11 @@ function App() {
   const [user, setUser] = useState(getUser());
   log("user %o", user);
 
+  const handleLogout = () => {
+    logOut();
+    setUser(null);
+  };
+
   if (!user) {
     return (
       <main className="App">
@@ -27,12 +35,23 @@ function App() {
       </main>
     );
   }
+  if (user.role === "admin") {
+    return (
+      <>
+        <main className="App">
+          <AdminNavBar handleLogout={handleLogout} />
+          <Routes>
+            <Route path="/admin/pending-users" element={<PendingUsersPage />} />
+          </Routes>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
       <main className="App">
-        <NavBar setUser={setUser} />
-
+        <NavBar handleLogout={handleLogout} />
         <Routes>
           {/* <Route path="/orders" element={<OrderHistoryPage />} />
           <Route path="/orders/new" element={<NewOrderPage />} />
@@ -53,6 +72,9 @@ function App() {
             element={<TransactionDetailPage />}
           />
           <Route path="/profile" element={<ProfilePage />} />
+          {/* {user.role === "admin" && (
+            <Route path="/pending-users" element={<PendingUsersPage />} />
+          )} */}
         </Routes>
       </main>
     </>
