@@ -64,7 +64,7 @@ const loginUser = async (req, res) => {
     const queryText = "SELECT * FROM users WHERE email = $1 AND role = $2";
     const { rows } = await db.query(queryText, [email, userType]);
     if (rows.length === 0) {
-      console.log("User not found");
+      console.log("User not found for email and userType:", email, userType);
       return res.status(400).json({ error: "User not found" });
     }
 
@@ -72,9 +72,11 @@ const loginUser = async (req, res) => {
     console.log("User found:", user);
 
     // 检查密码
+    console.log("Stored hashed password:", user.password);
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Password match status:", isMatch);
     if (!isMatch) {
-      console.log("Invalid credentials");
+      console.log("Invalid credentials for email:", email);
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
