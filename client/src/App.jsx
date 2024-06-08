@@ -11,6 +11,8 @@ import StockDetailPage from "./pages/StockDetailPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import TransactionDetailPage from "./pages/TransactionDetailPage";
 import ProfilePage from "./pages/ProfilePage";
+import PendingUsersPage from "./pages/PendingUsersPage";
+
 // import NewOrderPage from "../NewOrderPage/NewOrderPage";
 // import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 
@@ -53,6 +55,9 @@ function App() {
             element={<TransactionDetailPage />}
           />
           <Route path="/profile" element={<ProfilePage />} />
+          {user.role === "admin" && (
+            <Route path="/admin/pending-users" element={<PendingUsersPage />} />
+          )}
         </Routes>
       </main>
     </>
