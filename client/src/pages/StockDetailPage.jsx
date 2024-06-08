@@ -31,7 +31,13 @@ export default function StockDetailPage() {
       navigate("/transactions");
     } catch (err) {
       console.error("Error occurred while buying stock:", err);
-      setError("Failed to buy stock");
+      if (err.message.includes("User not approved")) {
+        setError(
+          "You are not approved to buy stocks. Please wait for admin approval."
+        );
+      } else {
+        setError("Failed to buy stock");
+      }
     }
   };
 

@@ -34,6 +34,23 @@ const buyStock = async (req, res) => {
   console.log("Received request to buy stock:", { stockId, quantity, userId });
 
   try {
+    // 检查用户是否通过审核
+    console.log("Checking if user is approved");
+    const userResult = await db.query(
+      "SELECT is_approved FROM users WHERE id = $1",
+      [userId],
+    );
+    if (userResult.rows.length === 0) {
+      console.log("User not found for userId:", userId);
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (!userResult.rows[0].is_approved) {
+      console.log("User is not approved:", userId);
+      return res
+        .status(403)
+        .json({ error: "User not approved. Please wait for admin approval." });
+    }
+
     // 获取股票价格
     console.log("Fetching stock price for stockId:", stockId);
     const stockResult = await db.query(
