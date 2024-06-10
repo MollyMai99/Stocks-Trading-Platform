@@ -5,42 +5,88 @@ const jwt = require("jsonwebtoken");
 // const { createUser } = require("../../models/User");
 
 const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const checkUserQuery =
-      "SELECT * FROM users WHERE username = $1 OR email = $2";
-    const { rows: existingUsers } = await db.query(checkUserQuery, [
-      username,
-      email,
-    ]);
-    if (existingUsers.length > 0) {
-      return res
-        .status(400)
-        .json({ error: "Username or email already exists" });
-    }
+  const { username, email, password, userType } = req.body;
 
+  try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const queryText = `
       INSERT INTO users (username, email, password, role, is_approved)
-      VALUES ($1, $2, $3, 'user', FALSE)
-      RETURNING id, username, email, role, is_approved, created_at
+      VALUES ($1, $2, $3, $4, false)
+      RETURNING *
     `;
-    const values = [username, email, hashedPassword];
+    const values = [username, email, hashedPassword, userType];
     const { rows } = await db.query(queryText, values);
 
     const user = rows[0];
+
+    // 生成 JWT 令牌
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        user: { id: user.id, email: user.email, role: user.role },
+      },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" },
+      {
+        expiresIn: "1h",
+      },
     );
 
-    res.status(201).json({ token, user });
+    const response = {
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      },
+    };
+
+    res.status(201).json(response);
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ error: "Server error" });
   }
 };
+
+// const registerUser = async (req, res) => {
+//   const { username, email, password } = req.body;
+//   try {
+//     const checkUserQuery =
+//       "SELECT * FROM users WHERE username = $1 OR email = $2";
+//     const { rows: existingUsers } = await db.query(checkUserQuery, [
+//       username,
+//       email,
+//     ]);
+//     if (existingUsers.length > 0) {
+//       return res
+//         .status(400)
+//         .json({ error: "Username or email already exists" });
+//     }
+
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     const queryText = `
+//       INSERT INTO users (username, email, password, role, is_approved)
+//       VALUES ($1, $2, $3, 'user', FALSE)
+//       RETURNING id, username, email, role, is_approved, created_at
+//     `;
+//     const values = [username, email, hashedPassword];
+//     const { rows } = await db.query(queryText, values);
+
+//     const user = rows[0];
+//     const token = jwt.sign(
+//       { id: user.id, email: user.email, role: user.role },
+//       process.env.JWT_SECRET,
+//       { expiresIn: "1h" },
+//     );
+
+//     res.status(201).json({ token, user });
+//   } catch (error) {
+//     console.error("Error registering user:", error);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// };
 
 // const registerUser = async (req, res) => {
 //   const { username, email, password } = req.body;
