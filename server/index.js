@@ -1,7 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
+const cors = require("cors");
+// const path = require("path");
 
 const authRoutes = require("./routes/api/authRoutes");
 const userRoutes = require("./routes/api/usersRoutes");
@@ -19,6 +20,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("Hello, PERN Stack!");
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
@@ -152,11 +158,11 @@ app.use("/api/admin", adminRoutes);
 // });
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
