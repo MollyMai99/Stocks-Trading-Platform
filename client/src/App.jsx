@@ -1,5 +1,5 @@
 import debug from "debug";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "../src/components/NavBar";
 import AdminNavBar from "../src/components/Admin/AdminNavBar";
@@ -22,6 +22,13 @@ const log = debug("mern:pages:App:App");
 function App() {
   const [user, setUser] = useState(getUser());
   log("user %o", user);
+
+  useEffect(() => {
+    const currentUser = getUser();
+    if (currentUser) {
+      setUser(currentUser);
+    }
+  }, []);
 
   const handleLogout = () => {
     logOut();

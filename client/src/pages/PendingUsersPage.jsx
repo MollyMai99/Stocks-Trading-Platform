@@ -4,14 +4,17 @@ import { getPendingUsers, approveUser } from "../utilities/admin-service";
 export default function PendingUsersPage() {
   const [pendingUsers, setPendingUsers] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPendingUsers() {
       try {
         const users = await getPendingUsers();
         setPendingUsers(users);
+        setLoading(false);
       } catch (err) {
         setError("Failed to fetch pending users");
+        setLoading(false);
       }
     }
     fetchPendingUsers();
@@ -27,6 +30,10 @@ export default function PendingUsersPage() {
       setError("Failed to approve user");
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading message
+  }
 
   if (error) {
     return <p>{error}</p>;

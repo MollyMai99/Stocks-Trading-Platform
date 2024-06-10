@@ -6,9 +6,9 @@ const log = debug("mern:components:SignUpForm");
 
 export default class SignUpForm extends Component {
   state = {
-    username: "user6",
-    email: "user6@example.com",
-    password: "123",
+    username: "",
+    email: "",
+    password: "",
     confirm: "",
     error: "",
   };
