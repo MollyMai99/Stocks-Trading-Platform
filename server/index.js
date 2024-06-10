@@ -37,7 +37,7 @@ app.use("/api/admin", adminRoutes);
 
 // Catch all handler for other routes, to return the React app
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
 });
 
 // const userData = [
