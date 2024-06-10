@@ -5,6 +5,7 @@
   "scripts": {
     "dev:react": "vite  --config client/vite.config.js",
     "dev:express": "DEBUG=mern:* node --watch server/index.js",
+    "start": "node server/index.js",
     "dev:express-win": "nodemon server.js",
     "build": "vite build  --config client/vite.config.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
