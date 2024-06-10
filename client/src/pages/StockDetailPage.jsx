@@ -33,7 +33,7 @@ export default function StockDetailPage() {
   const handleBuyStock = async () => {
     try {
       console.log("Initiating buyStock with user.id:", user.id);
-      await buyStock(stockId, quantity, user.id);
+      await buyStock(stockId, quantity, stock.price, user.id);
       navigate("/transactions");
     } catch (err) {
       console.error("Error occurred while buying stock:", err);
@@ -77,7 +77,7 @@ export default function StockDetailPage() {
               onChange={(e) => setQuantity(e.target.value)}
             />
           </label>
-          <p>Total Cost: {quantity * stock.current_price}</p>
+          <p>Total Cost: {quantity * stock.price}</p>
           <button onClick={handleBuyStock}>Confirm Purchase</button>
           {error && <p>{error}</p>}
         </>

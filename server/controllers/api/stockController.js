@@ -30,7 +30,7 @@ const getStockById = async (req, res) => {
 
 // 购买股票
 const buyStock = async (req, res) => {
-  const { stockId, quantity, userId } = req.body;
+  const { stockId, quantity, price, userId } = req.body;
   console.log("Received request to buy stock:", { stockId, quantity, userId });
 
   try {
@@ -52,17 +52,17 @@ const buyStock = async (req, res) => {
     }
 
     // 获取股票价格
-    console.log("Fetching stock price for stockId:", stockId);
-    const stockResult = await db.query(
-      "SELECT current_price FROM stocks WHERE id = $1",
-      [stockId],
-    );
-    if (stockResult.rows.length === 0) {
-      console.log("Stock not found for stockId:", stockId);
-      return res.status(404).json({ error: "Stock not found" });
-    }
-    const price = stockResult.rows[0].current_price;
-    console.log("Fetched stock price:", price);
+    // console.log("Fetching stock price for stockId:", stockId);
+    // const stockResult = await db.query(
+    //   "SELECT current_price FROM stocks WHERE id = $1",
+    //   [stockId],
+    // );
+    // if (stockResult.rows.length === 0) {
+    //   console.log("Stock not found for stockId:", stockId);
+    //   return res.status(404).json({ error: "Stock not found" });
+    // }
+    // const price = stockResult.rows[0].current_price;
+    // console.log("Fetched stock price:", price);
     // const totalCost = price * quantity;
 
     // 插入交易记录
