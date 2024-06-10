@@ -139,7 +139,7 @@ app.use("/api/admin", adminRoutes);
 //   { user_id: 5, stock_id: 10, quantity: 7, price: 140.0 },
 // ];
 
-app.listen(port, async () => {
+app.listen(port, "0.0.0.0", async () => {
   // await createUserTable();
   // await insertUserData(userData);
   // await createStockTable();
