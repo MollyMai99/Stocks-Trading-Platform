@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const authRoutes = require("./routes/api/authRoutes");
 const userRoutes = require("./routes/api/usersRoutes");
@@ -16,7 +17,12 @@ const adminRoutes = require("./routes/api/adminsRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get("/", (req, res) => {
+  res.send("Hello, PERN Stack!");
+});
+
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
@@ -137,7 +143,7 @@ app.use("/api/admin", adminRoutes);
 //   { user_id: 5, stock_id: 10, quantity: 7, price: 140.0 },
 // ];
 
-app.listen(port, async () => {
+app.listen(port, () => {
   // await createUserTable();
   // await insertUserData(userData);
   // await createStockTable();
