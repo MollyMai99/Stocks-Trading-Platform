@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const authRoutes = require("./routes/api/authRoutes");
 const userRoutes = require("./routes/api/usersRoutes");
@@ -140,12 +141,23 @@ app.use("/api/admin", adminRoutes);
 // ];
 
 // app.listen(port, "0.0.0.0", async () => {
-app.listen(port, "0.0.0.0", () => {
-  // await createUserTable();
-  // await insertUserData(userData);
-  // await createStockTable();
-  // await insertStockData(stockData);
-  // await createTransactionTable();
-  // await insertTransactionData(transactionData);
+// app.listen(port, "0.0.0.0", () => {
+//   // await createUserTable();
+//   // await insertUserData(userData);
+//   // await createStockTable();
+//   // await insertStockData(stockData);
+//   // await createTransactionTable();
+//   // await insertTransactionData(transactionData);
+//   console.log(`Server is running on port ${port}`);
+// });
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
