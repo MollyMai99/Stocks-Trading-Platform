@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const path = require("path");
+const path = require("path");
 
 const authRoutes = require("./routes/api/authRoutes");
 const userRoutes = require("./routes/api/usersRoutes");
@@ -22,8 +22,11 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello, PERN Stack!");
+// Serve static files from the React app
+app.use(express.static(path.resolve(__dirname, "../client/dist")));
+
+app.get("/api", (req, res) => {
+  res.json({ hello: "world" });
 });
 
 app.use("/api/auth", authRoutes);
@@ -31,6 +34,11 @@ app.use("/api/user", userRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use("/api/user/transactions", transactionRoutes);
 app.use("/api/admin", adminRoutes);
+
+// Catch all handler for other routes, to return the React app
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client", "index.html"));
+});
 
 // const userData = [
 //   {
