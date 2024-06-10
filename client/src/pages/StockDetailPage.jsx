@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getStockDetails, buyStock } from "../utilities/stocks-service";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { fetchStockDetails, buyStock } from "../utilities/stocks-service";
 import { getUser } from "../utilities/users-service";
 
 export default function StockDetailPage() {
   const { stockId } = useParams();
+  const { state } = useLocation();
+  const { stockCode } = state; // 从 state 获取 stockCode
   const [stock, setStock] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [error, setError] = useState("");
@@ -13,12 +15,16 @@ export default function StockDetailPage() {
   const user = getUser();
 
   useEffect(() => {
-    async function fetchStockDetails() {
-      const stockData = await getStockDetails(stockId);
-      setStock(stockData);
+    async function fetchStockDetailsFromAPI() {
+      try {
+        const stockData = await fetchStockDetails(stockCode); // 从API获取股票详情
+        setStock(stockData);
+      } catch (err) {
+        setError("Failed to fetch stock details");
+      }
     }
-    fetchStockDetails();
-  }, [stockId]);
+    fetchStockDetailsFromAPI();
+  }, [stockCode]);
 
   const handleBuyClick = () => {
     setShowBuyOptions(true);
@@ -47,10 +53,16 @@ export default function StockDetailPage() {
 
   return (
     <div>
-      <h1>{stock.stock_name} Details</h1>
+      <h1>{stock.ticker} Details</h1>
+      <p>Company: {stock.name}</p>
+      <p>Stock Code: {stock.ticker}</p>
+      <p>Price: {stock.price}</p>
+
+      {/* <h1>{stock.stock_name} Details</h1>
       <p>Company: {stock.company_name}</p>
       <p>Stock Code: {stock.stock_code}</p>
-      <p>Price: {stock.current_price}</p>
+      <p>Price: {stock.current_price}</p> */}
+
       {/* <Link to={`/buy/${stock.id}`}>
         <button>Buy Stock</button>
       </Link> */}

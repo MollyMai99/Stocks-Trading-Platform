@@ -33,7 +33,12 @@ export default function StocksPage() {
               <td>{stock.company_name}</td>
               <td>{stock.stock_code}</td>
               <td>
-                <Link to={`/stocks/${stock.id}`}>View Details</Link>
+                <Link
+                  to={`/stocks/${stock.id}`}
+                  state={{ stockCode: stock.stock_code }}
+                >
+                  View Details
+                </Link>
               </td>
             </tr>
           ))}
