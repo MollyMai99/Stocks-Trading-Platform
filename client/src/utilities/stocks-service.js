@@ -13,8 +13,8 @@ export function getStocks() {
 export async function fetchStockDetails(stockCode) {
   try {
     const response = await fetch(
-      `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=jpqEm77zS2gsDoy1tifSsrgMvvpw3XS2zl6HHf2V`,
-      // `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=JgOAADvWjnurMD8QLuMAkLF5XlL7pD8jQUMCqXlC`
+      // `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=jpqEm77zS2gsDoy1tifSsrgMvvpw3XS2zl6HHf2V`
+      `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=JgOAADvWjnurMD8QLuMAkLF5XlL7pD8jQUMCqXlC`,
       // `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=SQ6IJwKFCd5COSkR2TSgYxA4RCV0fzStMaVwPFSB`
       // `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=j6Hi7FQNMB8woaX3JlX1qoUpXAH4lb5cm3zoRYd7`
       // `https://api.stockdata.org/v1/data/quote?symbols=${stockCode}&api_token=HSmh0vNFwQe7kQyxHJwJu3HLZvlOvJ1it02wnLC7`
@@ -32,7 +32,17 @@ export async function fetchStockDetails(stockCode) {
   }
 }
 
-export function buyStock(stockId, quantity, userId) {
-  console.log("Sending request to buy stock:", { stockId, quantity, userId });
-  return sendRequest(`${BASE_URL}/buy`, "POST", { stockId, quantity, userId });
+export function buyStock(stockId, quantity, price, userId) {
+  console.log("Sending request to buy stock:", {
+    stockId,
+    quantity,
+    price,
+    userId,
+  });
+  return sendRequest(`${BASE_URL}/buy`, "POST", {
+    stockId,
+    quantity,
+    price,
+    userId,
+  });
 }
