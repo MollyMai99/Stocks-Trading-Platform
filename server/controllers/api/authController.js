@@ -9,12 +9,14 @@ const registerUser = async (req, res) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
+    const isApproved = userType === "admin" ? true : false;
+
     const queryText = `
       INSERT INTO users (username, email, password, role, is_approved)
-      VALUES ($1, $2, $3, $4, false)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *
     `;
-    const values = [username, email, hashedPassword, userType];
+    const values = [username, email, hashedPassword, userType, isApproved];
     const { rows } = await db.query(queryText, values);
 
     const user = rows[0];
@@ -40,6 +42,7 @@ const registerUser = async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        is_approved: user.is_approved,
       },
     };
 
