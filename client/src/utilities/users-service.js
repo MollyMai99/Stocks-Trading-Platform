@@ -46,6 +46,7 @@ export function getUser() {
   const payload = parseJwt(token);
   console.log("payload", payload);
   console.log(typeof payload.balance);
+  console.log(payload.balance);
   // console.log("payload.user", payload.user);
   // return payload ? payload.user : null;
   return payload ? payload : null;
