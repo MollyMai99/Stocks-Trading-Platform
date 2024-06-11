@@ -80,7 +80,10 @@ function App() {
             element={<TransactionDetailPage />}
           />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/wallet" element={<WalletPage />} />
+          <Route
+            path="/wallet"
+            element={<WalletPage user={user} setUser={setUser} />}
+          />
           {/* {user.role === "admin" && (
             <Route path="/pending-users" element={<PendingUsersPage />} />
           )} */}
