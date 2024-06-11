@@ -1,0 +1,22 @@
+meta {
+  name: Withdraw
+  type: http
+  seq: 17
+}
+
+post {
+  url: http://localhost:3000/api/wallet/deposit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzcsImVtYWlsIjoidXNlcjZAZXhhbXBsZS5jb20iLCJyb2xlIjoidXNlciIsInVzZXIiOnsiaWQiOjM3LCJlbWFpbCI6InVzZXI2QGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIifSwiaWF0IjoxNzE4MDk0Nzc5LCJleHAiOjE3MTgwOTgzNzl9.nqDjhQD1N9foR79Pal8H7zGv5ymqcfOciiaftmsdgfI
+}
+
+body:json {
+  {
+    "userId": 37,
+    "amount": 200
+  }
+}
