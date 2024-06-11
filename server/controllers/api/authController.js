@@ -12,14 +12,15 @@ const registerUser = async (req, res) => {
     const isApproved = userType === "admin" ? true : false;
 
     const queryText = `
-      INSERT INTO users (username, email, password, role, is_approved)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO users (username, email, password, role, is_approved, balance)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *
     `;
-    const values = [username, email, hashedPassword, userType, isApproved];
+    const values = [username, email, hashedPassword, userType, isApproved, 0.0];
     const { rows } = await db.query(queryText, values);
 
     const user = rows[0];
+    console.log(user);
 
     // 生成 JWT 令牌
     const token = jwt.sign(
@@ -27,7 +28,8 @@ const registerUser = async (req, res) => {
         id: user.id,
         email: user.email,
         role: user.role,
-        user: { id: user.id, email: user.email, role: user.role },
+        balance: user.balance,
+        // user: { id: user.id, email: user.email, role: user.role },
       },
       process.env.JWT_SECRET,
       {
@@ -42,6 +44,7 @@ const registerUser = async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        balance: user.balance,
         is_approved: user.is_approved,
       },
     };
@@ -143,7 +146,8 @@ const loginUser = async (req, res) => {
         id: user.id,
         email: user.email,
         role: user.role,
-        user: { id: user.id, email: user.email, role: user.role },
+        balance: user.balance,
+        // user: { id: user.id, email: user.email, role: user.role },
       },
       process.env.JWT_SECRET,
       {
@@ -160,6 +164,7 @@ const loginUser = async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        balance: user.balance,
       },
     };
 
