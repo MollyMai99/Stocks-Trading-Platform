@@ -54,9 +54,9 @@ These are the user stories that guided the development of this project:
 
 ### Language/Framework
 
+- JavaScript
 - HTML
 - CSS, bootstrap
-- JavaScript
 
 ### Data Model
 
@@ -83,11 +83,9 @@ These are the user stories that guided the development of this project:
 
 ## Getting Started
 
-[Deployed App](https://stocks-trading-platform.onrender.com)
+#### [Deployed App](https://stocks-trading-platform.onrender.com)
 
-#### Pitch Deck
-
-[Pitch Deck]()
+#### [Pitch Deck]()
 
 #### Project Planning
 
