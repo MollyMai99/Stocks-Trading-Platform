@@ -23,11 +23,11 @@ export default function LoginForm({ setUser }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="input-group mb-3">
       <fieldset>
         <legend>Login</legend>
 
-        <label>
+        <label className="form-label">
           Email:
           <input
             name="email"
@@ -39,7 +39,7 @@ export default function LoginForm({ setUser }) {
         </label>
         <br />
 
-        <label>
+        <label className="form-label">
           Password:
           <input
             name="password"
@@ -51,9 +51,10 @@ export default function LoginForm({ setUser }) {
         </label>
         <br />
 
-        <label>
+        <label className="form-label">
           User Type:
           <select
+            className="form-select"
             name="userType"
             value={userType}
             onChange={(e) => setUserType(e.target.value)}
@@ -64,7 +65,9 @@ export default function LoginForm({ setUser }) {
         </label>
         <br />
 
-        <button type="submit">Login</button>
+        <button className="btn btn-primary" type="submit">
+          Login
+        </button>
         <p>{error}</p>
       </fieldset>
     </form>

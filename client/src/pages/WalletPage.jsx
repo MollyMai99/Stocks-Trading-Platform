@@ -73,8 +73,12 @@ export default function WalletPage({ user, setUser }) {
           Amount:
           <input type="number" value={amount} onChange={handleAmountChange} />
         </label>
-        <button onClick={handleDeposit}>Deposit</button>
-        <button onClick={handleWithdraw}>Withdraw</button>
+        <button className="btn btn-primary" onClick={handleDeposit}>
+          Deposit
+        </button>
+        <button className="btn btn-primary" onClick={handleWithdraw}>
+          Withdraw
+        </button>
       </div>
       {message && <p>{message}</p>}
       {error && <p>{error}</p>}
