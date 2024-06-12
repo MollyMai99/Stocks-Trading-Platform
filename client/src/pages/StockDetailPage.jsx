@@ -57,10 +57,14 @@ export default function StockDetailPage() {
       <p>Company: {stock.name}</p>
       <p>Stock Code: {stock.ticker}</p>
       <p>Price: {stock.price}</p>
-      {!showBuyOptions && <button onClick={handleBuyClick}>Buy Stock</button>}
+      {!showBuyOptions && (
+        <button onClick={handleBuyClick} className="btn btn-primary">
+          Buy Stock
+        </button>
+      )}
       {showBuyOptions && (
         <>
-          <label>
+          <label className="form-label">
             Quantity:
             <input
               type="number"
@@ -69,7 +73,9 @@ export default function StockDetailPage() {
             />
           </label>
           <p>Total Cost: {quantity * stock.price}</p>
-          <button onClick={handleBuyStock}>Confirm Purchase</button>
+          <button onClick={handleBuyStock} className="btn btn-primary">
+            Confirm Purchase
+          </button>
           {error && <p>{error}</p>}
         </>
       )}

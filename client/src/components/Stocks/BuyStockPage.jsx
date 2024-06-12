@@ -45,7 +45,9 @@ export default function BuyStockPage() {
         />
       </label>
       <p>Total Cost: {quantity * stock.current_price}</p>
-      <button onClick={handleBuyStock}>Confirm Purchase</button>
+      <button onClick={handleBuyStock} className="btn btn-primary">
+        Confirm Purchase
+      </button>
       {error && <p>{error}</p>}
     </div>
   );

@@ -69,12 +69,17 @@ export default function WalletPage({ user, setUser }) {
       <div>
         {/* <p>Balance: ${balance}</p> */}
         <p>Balance: ${balance.toFixed(2)}</p>
-        <label>
+        <label className="form-label">
           Amount:
           <input type="number" value={amount} onChange={handleAmountChange} />
         </label>
-        <button onClick={handleDeposit}>Deposit</button>
-        <button onClick={handleWithdraw}>Withdraw</button>
+        <br />
+        <button className="btn btn-primary" onClick={handleDeposit}>
+          Deposit
+        </button>
+        <button className="btn btn-primary" onClick={handleWithdraw}>
+          Withdraw
+        </button>
       </div>
       {message && <p>{message}</p>}
       {error && <p>{error}</p>}

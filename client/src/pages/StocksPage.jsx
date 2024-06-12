@@ -16,7 +16,7 @@ export default function StocksPage() {
   return (
     <div>
       <h1>Stock Market</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Stock Name</th>

@@ -46,7 +46,7 @@ export default function TransactionsPage() {
   return (
     <div>
       <h1>Transaction History</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Stock Name</th>

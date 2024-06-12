@@ -21,7 +21,7 @@ export default function TransactionDetailPage() {
   return (
     <div>
       <h1>Transaction Details for {transactions[0].stock_name}</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Date</th>

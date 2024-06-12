@@ -30,11 +30,11 @@ export default function SignUpForm({ setUser }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="input-group mb-3">
       <fieldset>
         <legend>Sign Up</legend>
 
-        <label>
+        <label className="form-label">
           Username:
           <input
             name="username"
@@ -45,7 +45,7 @@ export default function SignUpForm({ setUser }) {
         </label>
         <br />
 
-        <label>
+        <label className="form-label">
           Email:
           <input
             name="email"
@@ -57,7 +57,7 @@ export default function SignUpForm({ setUser }) {
         </label>
         <br />
 
-        <label>
+        <label className="form-label">
           Password:
           <input
             name="password"
@@ -69,7 +69,7 @@ export default function SignUpForm({ setUser }) {
         </label>
         <br />
 
-        <label>
+        <label className="form-label">
           Confirm Password:
           <input
             name="confirm"
@@ -81,9 +81,10 @@ export default function SignUpForm({ setUser }) {
         </label>
         <br />
 
-        <label>
+        <label className="form-label">
           User Type:
           <select
+            className="form-select"
             name="userType"
             value={userType}
             onChange={(e) => setUserType(e.target.value)}
@@ -94,7 +95,9 @@ export default function SignUpForm({ setUser }) {
         </label>
         <br />
 
-        <button type="submit">Sign Up</button>
+        <button className="btn btn-primary" type="submit">
+          Sign Up
+        </button>
         <p>{error}</p>
       </fieldset>
     </form>
