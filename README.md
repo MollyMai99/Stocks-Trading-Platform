@@ -106,7 +106,7 @@ These are the user stories that guided the development of this project:
 
 Auth Page
 
-![Auth Page](/Users/lingling/sei/project/Stocks-Trading-Platform/client/public/auth-page.png)
+![Auth Page](/client/public/auth-page.png)
 
 ## Next Steps
 
