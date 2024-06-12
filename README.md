@@ -81,7 +81,7 @@ These are the user stories that guided the development of this project:
 
 ### Tools
 
-- JIRA (Public Board)
+- [JIRA (Public Board)](https://molly-project.atlassian.net/jira/software/projects/ST/boards/3)
 - Render (Online Deployment)
 - JWT (Authentication)
 - Git and Github
@@ -101,10 +101,6 @@ These are the user stories that guided the development of this project:
 ## Getting Started
 
 #### [Deployed App](https://stocks-trading-platform.onrender.com)
-
-#### [Pitch Deck]()
-
-#### [Project Planning-JIRA](https://molly-project.atlassian.net/jira/software/projects/ST/boards/3)
 
 ## Screenshots
 
