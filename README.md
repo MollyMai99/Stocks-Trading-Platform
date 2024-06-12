@@ -43,11 +43,9 @@ These are the user stories that guided the development of this project:
   As an admin, I want to view and review new user registration requests,
   So that only eligible users can perform transactions.
 
-## Technologies Summary
+## Technologies Introduction
 
-#### Stack
-
-PERN
+#### PERN-Stack
 
 - P PostgreSQL
 - E Express
@@ -56,7 +54,7 @@ PERN
 
 #### Data Model
 
-[Data Model](/client/public/DataModel.png)
+![Data Model](/client/public/DataModel.png)
 
 #### Language/Framework
 
@@ -73,12 +71,12 @@ PERN
 - Visual Studio Code
 - Vite
 
-## Technical Description
+## Technical Summary
 
 - A PERN stack app
 - Four data entities (Models)
 - Data operations including CREATE, READ, UPDATE, and DELETE
-- Consume data from a third-party API.[https://www.stockdata.org/]
+- Consume data from a third-party [API](https://www.stockdata.org/)
 - Authenticate users using JWT
 - Two Usertype：user，admin
 - Be deployed online
