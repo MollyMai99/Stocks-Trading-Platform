@@ -54,7 +54,7 @@ These are the user stories that guided the development of this project:
 
    As a user, I want to view my user profile.
 
-9. Review New Users(Admin)
+9. Review New Users (Admin)
 
    As an admin, I want to view and review new user registration requests
 
@@ -118,7 +118,7 @@ Stocks Page
 
 Stock Detail Page
 
-![Stock Detail Page](/client/public/auth-page.png)
+![Stock Detail Page](/client/public/stock-detail.png)
 
 Buy Stock
 
