@@ -9,37 +9,46 @@ This is a stock trading platform built using PERN. Users can view the latest sto
 These are the user stories that guided the development of this project:
 
 1. User Registration
+
    As a new user, I want to register an account,
    So that I can access the application and its features.
 
 2. User Login
+
    As a registered user, I want to log in to my account,
    So that I can access my account and perform transactions.
 
 3. View Stock List
+
    As a user, I want to view the stock list,
    So that I can choose which stocks to buy.
 
 4. View Stock Details
+
    As a user, I want to view detailed information about specific stocks,
    So that I can make informed decisions about my investments.
 
 5. Buy Stocks
+
    As a user, I want to buy stocks,
    So that I can invest in the stock market.
 
 6. View Transaction History
+
    As a user, I want to view my transaction history,
    So that I can track my investment history.
 
 7. Deposit or Withdraw Funds
+
    As a user, I want to deposit or withdraw funds from my wallet,
    So that I can manage my investments.
 
 8. View User Profile
+
    As a user, I want to view my user profile.
 
 9. Review New Users(Admin)
+
    As an admin, I want to view and review new user registration requests,
    So that only eligible users can perform transactions.
 
