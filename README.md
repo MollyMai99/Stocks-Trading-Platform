@@ -92,7 +92,7 @@ These are the user stories that guided the development of this project:
 
 - A PERN stack app
 - Four data entities (Models)
-- Data operations including CREATE, READ, UPDATE, and DELETE
+- Data operations including CREATE, READ and UPDATE
 - Consume data from a third-party [API](https://www.stockdata.org/)
 - Authenticate users using JWT
 - Two Usertype：user, admin
