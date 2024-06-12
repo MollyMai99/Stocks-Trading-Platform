@@ -57,15 +57,6 @@ export default function StockDetailPage() {
       <p>Company: {stock.name}</p>
       <p>Stock Code: {stock.ticker}</p>
       <p>Price: {stock.price}</p>
-
-      {/* <h1>{stock.stock_name} Details</h1>
-      <p>Company: {stock.company_name}</p>
-      <p>Stock Code: {stock.stock_code}</p>
-      <p>Price: {stock.current_price}</p> */}
-
-      {/* <Link to={`/buy/${stock.id}`}>
-        <button>Buy Stock</button>
-      </Link> */}
       {!showBuyOptions && <button onClick={handleBuyClick}>Buy Stock</button>}
       {showBuyOptions && (
         <>

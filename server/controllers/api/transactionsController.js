@@ -2,7 +2,7 @@ const db = require("../../config/db");
 
 // 获取用户所有交易
 const getTransactions = async (req, res) => {
-  const userId = req.user.id; // 假设用户信息已通过中间件注入
+  const userId = req.user.id;
   try {
     const queryText = `
       SELECT t.*, s.stock_name AS stock_name
@@ -21,7 +21,7 @@ const getTransactions = async (req, res) => {
 
 // 获取单个股票的交易详细信息
 const getTransactionDetails = async (req, res) => {
-  const userId = req.user.id; // 假设用户信息已通过中间件注入
+  const userId = req.user.id;
   const { stockId } = req.params;
   try {
     const queryText = `

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { deposit, withdraw } from "../utilities/wallet-service";
-// import { getUser } from "../utilities/users-service";
 
 export default function WalletPage({ user, setUser }) {
-  // const user = getUser();
   const [balance, setBalance] = useState(user ? parseFloat(user.balance) : 0);
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
