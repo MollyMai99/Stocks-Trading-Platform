@@ -45,24 +45,24 @@ These are the user stories that guided the development of this project:
 
 ## Technologies Introduction
 
-#### PERN-Stack
+### PERN-Stack
 
-- P PostgreSQL
-- E Express
-- R React
-- N Node
+- PostgreSQL
+- Express
+- React
+- Node
 
-#### Data Model
-
-![Data Model](/client/public/DataModel.png)
-
-#### Language/Framework
+### Language/Framework
 
 - HTML
 - CSS, bootstrap
 - JavaScript
 
-#### Tools
+### Data Model
+
+![Data Model](/client/public/DataModel.png)
+
+### Tools
 
 - JIRA (Public Board)
 - Render (Online Deployment)
@@ -78,8 +78,8 @@ These are the user stories that guided the development of this project:
 - Data operations including CREATE, READ, UPDATE, and DELETE
 - Consume data from a third-party [API](https://www.stockdata.org/)
 - Authenticate users using JWT
-- Two Usertype：user，admin
-- Be deployed online
+- Two Usertype：user, admin
+- Be deployed online (Render)
 
 ## Getting Started
 
