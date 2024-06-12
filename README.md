@@ -54,7 +54,7 @@ These are the user stories that guided the development of this project:
 
    As a user, I want to view my user profile.
 
-9. Review New Users(Admin)
+9. Review New Users (Admin)
 
    As an admin, I want to view and review new user registration requests
 
@@ -92,7 +92,7 @@ These are the user stories that guided the development of this project:
 
 - A PERN stack app
 - Four data entities (Models)
-- Data operations including CREATE, READ, UPDATE, and DELETE
+- Data operations including CREATE, READ and UPDATE
 - Consume data from a third-party [API](https://www.stockdata.org/)
 - Authenticate users using JWT
 - Two Usertype：user, admin
@@ -104,9 +104,41 @@ These are the user stories that guided the development of this project:
 
 ## Screenshots
 
-Landing Page
+Auth Page
 
-![Landing Page]()
+![Auth Page](/client/public/auth-page.png)
+
+Home Page
+
+![Home Page](/client/public/homepage.png)
+
+Stocks Page
+
+![Stocks Page](/client/public/stock-list.png)
+
+Stock Detail Page
+
+![Stock Detail Page](/client/public/stock-detail.png)
+
+Buy Stock
+
+![Buy Stock](/client/public/buy-stock.png)
+
+Transaction History
+
+![Transaction History](/client/public/transaction-history.png)
+
+Transaction Detail
+
+![Transaction Detail](/client/public/transaction-detail.png)
+
+Wallet
+
+![Wallet](/client/public/wallet.png)
+
+Admin Page
+
+![Admin Page](/client/public/admin.png)
 
 ## Next Steps
 
@@ -125,5 +157,3 @@ Users can check the latest foreign exchange rates and exchange currencies for st
 4. Stock Trends
 
 The stock details page shows trend charts to help users make investment decisions.
-
-## Experience Summary
