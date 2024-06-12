@@ -104,7 +104,7 @@ These are the user stories that guided the development of this project:
 
 #### [Pitch Deck]()
 
-#### Project Planning [JIRA](https://molly-project.atlassian.net/jira/software/projects/ST/boards/3)
+#### [Project Planning-JIRA](https://molly-project.atlassian.net/jira/software/projects/ST/boards/3)
 
 ## Screenshots
 
@@ -114,9 +114,20 @@ Landing Page
 
 ## Next Steps
 
-- Wallet Function: When users purchase stocks, the account balance is automatically updated.
-- Sell Stocks: Users can sell the stocks they have purchased to make investments.
-- Foreign Exchange: Users can check the latest foreign exchange rates and exchange currencies for stock trading.
-- Stock Trends: The stock details page shows trend charts to help users make investment decisions.
+1. Wallet Function
+
+When users purchase stocks, the account balance is automatically updated.
+
+2. Sell Stocks
+
+Users can sell the stocks they have purchased to make investments.
+
+3. Foreign Exchange
+
+Users can check the latest foreign exchange rates and exchange currencies for stock trading.
+
+4. Stock Trends
+
+The stock details page shows trend charts to help users make investment decisions.
 
 ## Experience Summary
