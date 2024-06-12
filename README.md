@@ -108,6 +108,38 @@ Auth Page
 
 ![Auth Page](/client/public/auth-page.png)
 
+Home Page
+
+![Home Page](/client/public/homepage.png)
+
+Stocks Page
+
+![Stocks Page](/client/public/stock-list.png)
+
+Stock Detail Page
+
+![Stock Detail Page](/client/public/auth-page.png)
+
+Buy Stock
+
+![Buy Stock](/client/public/buy-stock.png)
+
+Transaction History
+
+![Transaction History](/client/public/transaction-history.png)
+
+Transaction Detail
+
+![Transaction Detail](/client/public/transaction-detail.png)
+
+Wallet
+
+![Wallet](/client/public/wallet.png)
+
+Admin Page
+
+![Admin Page](/client/public/admin.png)
+
 ## Next Steps
 
 1. Wallet Function
@@ -125,5 +157,3 @@ Users can check the latest foreign exchange rates and exchange currencies for st
 4. Stock Trends
 
 The stock details page shows trend charts to help users make investment decisions.
-
-## Experience Summary
