@@ -1,0 +1,40 @@
+body {
+  background-color: #f8f9fa; /* 背景颜色：浅灰色 */
+  font-family: "Roboto", sans-serif; /* 字体：Roboto */
+  color: #343a40; /* 字体颜色：深灰色 */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 统一设置盒模型 */
+}
+
+/* 确保所有元素的边距和内边距一致 */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* 为所有 div 元素设置外边距和内边距 */
+div {
+  margin: 25px;
+  padding: 25px;
+}
+
+/* 标题样式 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #007bff; /* 标题颜色：蓝色 */
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+/* 段落样式 */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}

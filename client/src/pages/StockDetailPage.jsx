@@ -64,7 +64,7 @@ export default function StockDetailPage() {
       )}
       {showBuyOptions && (
         <>
-          <label>
+          <label className="form-label">
             Quantity:
             <input
               type="number"

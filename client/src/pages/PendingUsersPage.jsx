@@ -46,11 +46,16 @@ export default function PendingUsersPage() {
   return (
     <div>
       <h1>Pending Users</h1>
-      <ul>
+      <ul className="list-group">
         {pendingUsers.map((user) => (
-          <li key={user.id}>
+          <li key={user.id} className="list-group-item">
             {user.username} - {user.email}
-            <button onClick={() => handleApprove(user.id)}>Approve</button>
+            <button
+              onClick={() => handleApprove(user.id)}
+              className="btn btn-primary"
+            >
+              Approve
+            </button>
           </li>
         ))}
       </ul>
