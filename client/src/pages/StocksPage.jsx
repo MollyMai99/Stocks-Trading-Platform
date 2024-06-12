@@ -9,7 +9,6 @@ export default function StocksPage() {
     async function fetchStocks() {
       const stocksData = await getStocks();
       setStocks(stocksData);
-      // console.log(stocks);
     }
     fetchStocks();
   }, []);
