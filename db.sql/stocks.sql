@@ -1,0 +1,10 @@
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Apple Inc.', '2024-06-02 13:52:23.144044', 1, 'AAPL', 'Apple');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Microsoft Corporation', '2024-06-02 13:52:23.158544', 2, 'MSFT', 'Microsoft');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Amazon.com, Inc.', '2024-06-02 13:52:23.168506', 3, 'AMZN', 'Amazon');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Alphabet Inc.', '2024-06-02 13:52:23.179026', 4, 'GOOGL', 'Google');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Meta Platforms, Inc.', '2024-06-02 13:52:23.186572', 5, 'META', 'Facebook');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Tesla, Inc.', '2024-06-02 13:52:23.199092', 6, 'TSLA', 'Tesla');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Netflix, Inc.', '2024-06-02 13:52:23.208011', 7, 'NFLX', 'Netflix');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('NVIDIA Corporation', '2024-06-02 13:52:23.260063', 8, 'NVDA', 'NVIDIA');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('Intel Corporation', '2024-06-02 13:52:23.315051', 9, 'INTC', 'Intel');
+insert into "stocks" ("company_name", "created_at", "id", "stock_code", "stock_name") values ('International Business Machines Corporation', '2024-06-02 13:52:23.324013', 10, 'IBM', 'IBM');
